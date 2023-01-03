@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class InteractableObject : Action_Menu
 {
     public GameObject menu;
     public Image Image;
+
     protected override void OnCollided(GameObject collidedObject)
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            OnInteract();
+            if(menu.activeSelf) OnInteractClose();
+            else OnInteract();
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            OnInteractClose();
-        }
+
     }
     private void OnInteract()
     {
-        Debug.Log("Clicked");
         menu.SetActive(true);
     }
-    public void OnInteractClose()
+    private void OnInteractClose()
     {
-        Debug.Log("Clicked");
         menu.SetActive(false);
     }
+
+  
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Employees : MonoBehaviour
 {
     public int salary;
-
     public int soulsDecrease;
+
 
     public float timeBtwDecreases;
     private float nextDecreaseTime;
@@ -25,4 +25,5 @@ public class Employees : MonoBehaviour
             gm.souls -= soulsDecrease;
         }
     }
+
 }
