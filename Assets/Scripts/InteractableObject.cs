@@ -17,8 +17,14 @@ public class InteractableObject : Action_Menu
             if(menu.activeSelf) OnInteractClose();
             else OnInteract();
         }
-
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) 
+            || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.DownArrow) 
+            || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            OnInteractClose();
+        }
     }
+
     private void OnInteract()
     {
         menu.SetActive(true);

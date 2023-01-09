@@ -7,23 +7,23 @@ public class Employees : MonoBehaviour
     public int salary;
     public int soulsDecrease;
 
-
     public float timeBtwDecreases;
     private float nextDecreaseTime;
-
-    private GameManager gm;
+    private MainGameManager mgm;
     void Start()
     {
-        gm = FindObjectOfType<GameManager>();
+        mgm = FindObjectOfType<MainGameManager>();
     }
 
-    void Update()
+    public void Update()
     {
-        if(Time.time > nextDecreaseTime)
+        if (Time.time > nextDecreaseTime)
         {
             nextDecreaseTime = Time.time + timeBtwDecreases;
-            gm.souls -= soulsDecrease;
+            mgm.soul -= soulsDecrease;
+            Debug.Log("se esta quitanmdo dinero");
         }
+        
     }
 
 }

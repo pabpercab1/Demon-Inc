@@ -6,36 +6,66 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
-    public int souls;
-    public Text soulDisplay;
+    //public TMP_Text soulDisplay;
+   // public int soul;
     public GameObject hired;
-    public int salary;
     public TMP_Text buttonText;
+    public Button button;
 
-    void Update()
+    public int salary;
+    public int soulsDecrease;
+    public float timeBtwDecreases;
+    private float nextDecreaseTime;
+
+    private MainGameManager mgm;
+
+
+
+
+    void Start()
     {
-        soulDisplay.text = souls.ToString();
-        if (souls <= 0)
+        mgm = FindObjectOfType<MainGameManager>();
+        
+    }
+
+    public void Update()
+    {
+        if (mgm.soul < 0)
         {
             SceneManager.LoadScene("GameOver");
+        }
+
+        if (Time.time > nextDecreaseTime && hired.activeSelf)
+        {
+            nextDecreaseTime = Time.time + timeBtwDecreases;
+            mgm.soul -= soulsDecrease;
+            Debug.Log("se esta quitanmdo dinero");
         }
     }
 
     public void HireEmployee()
     {
-        if (hired.activeSelf)
+        if (button.onClick != null)
         {
-            hired.SetActive(false);
-            souls += salary / 3;
-            buttonText.text = "Hire";
+            if (hired.activeSelf)
+            {
+                hired.SetActive(false);
+                mgm.soul += salary / 3;
+                buttonText.text = "Hire";
+      
+            }
+            else if (mgm.soul >= salary)
+            {
+                hired.SetActive(true);
+                mgm.soul -= salary;
+                buttonText.text = "Fire";
+                
+                
+            }
         }
-        else if (souls >= salary)
-        {
-            hired.SetActive(true);
-            souls -= salary;
-            buttonText.text = "Fire";
-        }
+   
     }
 }
