@@ -5,10 +5,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoreHelper : MonoBehaviour
+public class TutorialHelper : MonoBehaviour
 {
     public GameObject secretario;
     public GameObject dialoguePanel;
+    public GameObject highlightEmp;
+    public GameObject highlightBoss;
     public TMP_Text textComponent;
     public string[] lines;
 
@@ -60,10 +62,26 @@ public class LoreHelper : MonoBehaviour
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+            if (index > 0)
+            {
+                secretario.SetActive(false);
+                highlightEmp.SetActive(true);
+
+            }
+            if (index > 2)
+            {
+                highlightEmp.SetActive(false);
+                highlightBoss.SetActive(true);
+            }
+            if (index > 3) 
+            { 
+                highlightBoss.SetActive(false);
+                secretario.SetActive(true);
+            }
         }
         else
         {
-            SceneManager.LoadScene("Tutorial");
+            SceneManager.LoadScene("Scene1");
             gameObject.SetActive(false);
         }   
     }
