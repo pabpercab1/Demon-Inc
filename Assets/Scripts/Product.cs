@@ -17,6 +17,7 @@ public class Product : MonoBehaviour
     private bool isProductAcive;
     private bool isProductCreation;
     private int developTimeProduct;
+    private int creationTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,10 +32,17 @@ public class Product : MonoBehaviour
             nextIncreaseTime = Time.time + timeBtwDecreases;
             mgm.soul += 1001;
         }
-        else if(Time.time > nextIncreaseTime && isProductCreation)
+        else if(Time.time > nextIncreaseTime && (isProductCreation && creationTime >= 1))
         {
             nextIncreaseTime = Time.time + timeBtwDecreases;
             mgm.soul -= 11;
+            creationTime -= 1;
+
+        }
+        else if(isProductCreation && creationTime <1)
+        {
+            isProductCreation = false;
+            isProductAcive = true;
         }
     }
     public void ProductCreation()
@@ -42,7 +50,7 @@ public class Product : MonoBehaviour
         if (button.onClick != null)
         {
             isProductCreation = true;
-            Debug.Log("Product Created");
+            creationTime = 4;
             //if (hired.activeSelf)
             //{
             //    hired.SetActive(false);
