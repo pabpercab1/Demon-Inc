@@ -11,10 +11,12 @@ public class MainGameManager : MonoBehaviour
 {
     public TMP_Text soulDisplay;
     public int soul;
+    public int employeesNum;
 
     private void Start()
     {
         soulDisplay.text = soul.ToString();
+        employeesNum = 0;
     }
     void Update()
     {
@@ -22,7 +24,6 @@ public class MainGameManager : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-        Debug.Log(soul.ToString());
 
         soulDisplay.text = soul.ToString();
     }
