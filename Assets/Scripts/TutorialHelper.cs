@@ -26,8 +26,8 @@ public class TutorialHelper : MonoBehaviour
 
     void Update()
     {
-     if (Input.GetMouseButtonDown(0))
-     {
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
             if(textComponent.text == lines[index])
             {
                 NextLine();
@@ -39,6 +39,28 @@ public class TutorialHelper : MonoBehaviour
                 textComponent.text = lines[index];
             }
         }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (textComponent.text == lines[index])
+            {
+                PreviousLine();
+
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Skip();
+        }
+    }
+
+    public void Skip()
+    {
+        SceneManager.LoadScene("Scene1");
     }
 
     public void StartDialogue()
@@ -84,6 +106,33 @@ public class TutorialHelper : MonoBehaviour
             SceneManager.LoadScene("Scene1");
             gameObject.SetActive(false);
         }   
+    }
+
+    void PreviousLine()
+    {
+        if (index > 0)
+        {
+            index--;
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
+            if (index < 1)
+            {
+                secretario.SetActive(false);
+                highlightEmp.SetActive(true);
+
+            }
+            if (index < 3)
+            {
+                highlightEmp.SetActive(false);
+                highlightBoss.SetActive(true);
+            }
+            if (index < 4)
+            {
+                highlightBoss.SetActive(false);
+                secretario.SetActive(true);
+            }
+        }
+
     }
 
 }
