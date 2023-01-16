@@ -28,7 +28,7 @@ public class InteractableObject : Action_Menu
     {
         menu.SetActive(true);
     }
-    private void OnInteractClose()
+    public void OnInteractClose()
     {
         menu.SetActive(false);
     }

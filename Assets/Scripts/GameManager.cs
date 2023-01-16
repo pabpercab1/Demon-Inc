@@ -55,14 +55,15 @@ public class GameManager : MonoBehaviour
                 hired.SetActive(false);
                 mgm.soul += salary / 3;
                 buttonText.text = "Hire";
-      
+                mgm.employeesNum -= 1;
+
             }
             else if (mgm.soul >= salary)
             {
                 hired.SetActive(true);
                 mgm.soul -= salary;
                 buttonText.text = "Fire";
-                
+                mgm.employeesNum += 1;
                 
             }
         }
