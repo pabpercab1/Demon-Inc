@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Moving : MonoBehaviour
@@ -9,7 +10,7 @@ public class Moving : MonoBehaviour
     private float _vInput;
     private float _hInput;
     private BoxCollider2D z_BoxCollider;
-    private Animator z_Animator;
+    private Animator animator;
 
     private void FixedUpdate()
     {
@@ -24,6 +25,9 @@ public class Moving : MonoBehaviour
 
         Vector2 movement = new Vector2(dx * Time.deltaTime, dy * Time.deltaTime);
 
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
         // Flip it
         if (movement.x > 0)
         {
@@ -60,7 +64,7 @@ public class Moving : MonoBehaviour
     void Start()
     {
         z_BoxCollider = GetComponent<BoxCollider2D>();
-        z_Animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         
     }
 

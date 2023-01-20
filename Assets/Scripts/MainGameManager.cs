@@ -22,9 +22,10 @@ public class MainGameManager : MonoBehaviour
     {
         if (soul < 0)
         {
+            soulDisplay.text = "0";
             SceneManager.LoadScene("GameOver");
         }
 
-        soulDisplay.text = soul.ToString();
+        else soulDisplay.text = soul.ToString();
     }
 }
