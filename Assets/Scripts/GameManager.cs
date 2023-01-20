@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //public TMP_Text soulDisplay;
-   // public int soul;
+    // public int soul;
     public GameObject hired;
     public TMP_Text buttonText;
     public Button button;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mgm = FindObjectOfType<MainGameManager>();
-        
+
     }
 
     public void Update()
@@ -64,9 +64,9 @@ public class GameManager : MonoBehaviour
                 mgm.soul -= salary;
                 buttonText.text = "Fire";
                 mgm.employeesNum += 1;
-                
+
             }
         }
-   
+
     }
 }
