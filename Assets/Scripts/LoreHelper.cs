@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoreHelper : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class LoreHelper : MonoBehaviour
     public GameObject dialoguePanel;
     public TMP_Text textComponent;
     public string[] lines;
+    public Button button;
 
     public float textSpeed;
     private int index;
@@ -24,11 +26,24 @@ public class LoreHelper : MonoBehaviour
 
     void Update()
     {
-     if (Input.GetMouseButtonDown(0))
-     {
-            if(textComponent.text == lines[index])
+         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+         {
+                if(textComponent.text == lines[index])
+                {
+                    NextLine();
+
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    textComponent.text = lines[index];
+                }
+         }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (textComponent.text == lines[index])
             {
-                NextLine();
+                PreviousLine();
 
             }
             else
@@ -37,6 +52,15 @@ public class LoreHelper : MonoBehaviour
                 textComponent.text = lines[index];
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Skip();
+        }
+    }
+
+    public void Skip()
+    {
+        SceneManager.LoadScene("Scene1");
     }
 
     public void StartDialogue()
@@ -66,6 +90,16 @@ public class LoreHelper : MonoBehaviour
             SceneManager.LoadScene("Tutorial");
             gameObject.SetActive(false);
         }   
+    }
+
+    void PreviousLine()
+    {
+        if (index > 0)
+        {
+            index--;
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
     }
 
 }

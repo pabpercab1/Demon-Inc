@@ -352,7 +352,7 @@ RectTransform:
   m_Children:
   - {fileID: 652705162}
   m_Father: {fileID: 1296564949}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.39200002, y: 0.344}
   m_AnchorMax: {x: 0.6096413, y: 0.43313417}
@@ -374,8 +374,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 714375359}
+    m_SelectOnDown: {fileID: 2009317744}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -643,8 +643,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 2009317744}
+    m_SelectOnDown: {fileID: 417748150}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -957,8 +957,8 @@ RectTransform:
   - {fileID: 2002411087}
   - {fileID: 1109067963}
   - {fileID: 714375358}
-  - {fileID: 2009317743}
   - {fileID: 417748149}
+  - {fileID: 2009317743}
   m_Father: {fileID: 1594425454}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1702,7 +1702,7 @@ RectTransform:
   m_Children:
   - {fileID: 1797947396}
   m_Father: {fileID: 1296564949}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.39200002, y: 0.23389779}
   m_AnchorMax: {x: 0.6096413, y: 0.3206894}
@@ -1724,8 +1724,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 417748150}
+    m_SelectOnDown: {fileID: 714375359}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
