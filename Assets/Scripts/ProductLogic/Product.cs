@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEditor.VersionControl;
 
 public class Product : MonoBehaviour
 {
@@ -19,15 +21,13 @@ public class Product : MonoBehaviour
     private bool isProductCreation;
     private bool isCalculation;
     private int developTimeProduct;
-    public int creationTime;
-    public int costByCreationTurn;
-    public int profitAfterCreationTurn;
-    public int profitTurn;
-    public int maliciusTotalPoints;
+    private int creationTime;
+    private int costByCreationTurn;
+    private int profitAfterCreationTurn;
+    private int profitTurn;
+    private int maliciusTotalPoints;
 
     public TMP_Text creationTimeText;
-    //public TMP_Text costByTurnText;
-    //public TMP_Text profitText;
     public TMP_Text turnsWithProfit;
     public TMP_Text maliciusPoints;
 
@@ -35,10 +35,13 @@ public class Product : MonoBehaviour
     public TMP_Text buttonText;
     public UnityEngine.UI.Button button;
 
+    private AgeGroup age;
+
     // Start is called before the first frame update
     void Start()
     {
         mgm = FindObjectOfType<MainGameManager>();
+        age = FindObjectOfType<AgeGroup>();
         buttonText.text = "Calculate Product";
 
         creationTimeText.text = "0";
@@ -48,7 +51,15 @@ public class Product : MonoBehaviour
         isProductCreation = false;
         isCalculation = true;
         isLock = false;
-    }
+
+        developTimeProduct=0;
+        creationTime=0;
+        costByCreationTurn=0;
+        profitAfterCreationTurn=0;
+        profitTurn=0;
+        maliciusTotalPoints=0;
+
+}
 
     // Update is called once per frame
     void Update()
@@ -85,31 +96,16 @@ public class Product : MonoBehaviour
             CalculateCreationTime(100);
 
             costByCreationTurn = 11;
-            profitAfterCreationTurn = 1001;
+            profitAfterCreationTurn = age?.obtainAgeInfluence() ?? -1;
             profitTurn = 5;
-
-
             CalculateMaliciusPoints(1, 6);
-            //if (hired.activeSelf)
-            //{
-            //    hired.SetActive(false);
-            //    mgm.soul += salary / 3;
-            //    buttonText.text = "Hire";
 
-            //}
-            //else if (mgm.soul >= salary)
-            //{
-            //    hired.SetActive(true);
-            //    mgm.soul -= salary;
-            //    buttonText.text = "Fire";
-
-
-            //}
             creationTimeText.text = creationTime.ToString();
             turnsWithProfit.text = profitTurn.ToString();
 
             buttonText.text = "Create Product";
             isCalculation = false;
+        Debug.Log("LLAMADA COMPLETADA"+profitAfterCreationTurn.ToString());
         }
         else if (button.onClick != null && isCalculation==false)
         {
