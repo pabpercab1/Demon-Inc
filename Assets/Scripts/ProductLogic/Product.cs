@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEditor.VersionControl;
 using System.ComponentModel.Design;
+using System.Linq;
 
 public class Product : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class Product : MonoBehaviour
     public TMP_Text buttonText;
     public UnityEngine.UI.Button button;
 
-    public bool historyMenuActive;
+    private bool historyMenuActive;
 
     private AgeGroup age;
 
@@ -90,6 +91,7 @@ public class Product : MonoBehaviour
             isProductCreation = false;
             isProductAcive = true;
             isLock = false;
+            button.interactable = true;
         }
 
         if (historialMenu.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Q)))
@@ -118,7 +120,7 @@ public class Product : MonoBehaviour
 
             buttonText.text = "Create Product";
             isCalculation = false;
-        Debug.Log("LLAMADA COMPLETADA"+profitAfterCreationTurn.ToString());
+
         }
         else if (button.onClick != null && isCalculation==false)
         {
@@ -127,9 +129,9 @@ public class Product : MonoBehaviour
             buttonText.text = "You need to wait";
             button.interactable = false;
             historialDic.Add(productName.text, profitAfterCreationTurn);
-            foreach (KeyValuePair<string, int> kvp in historialDic)
+            for (int i = 0; i < historialDic.Count; i++)
             {
-                historial.text = "Name: " + kvp.Key + "    Profit per turn: " + kvp.Value.ToString();
+                historial.text = "Name: "+historialDic.ElementAt(i).Key.ToString() +"    Profit: "+ historialDic.ElementAt(i).Value.ToString() + System.Environment.NewLine;
             }
         }
 
@@ -205,5 +207,6 @@ public class Product : MonoBehaviour
     {
         historyMenuActive = !historyMenuActive;
         historialMenu.SetActive(historyMenuActive);
+        Debug.Log(historialDic.Count.ToString());
     }
 }

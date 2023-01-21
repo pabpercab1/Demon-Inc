@@ -21,7 +21,6 @@ public class Employees : MonoBehaviour
         {
             nextDecreaseTime = Time.time + timeBtwDecreases;
             mgm.soul -= soulsDecrease;
-            Debug.Log("se esta quitanmdo dinero");
         }
         
     }
