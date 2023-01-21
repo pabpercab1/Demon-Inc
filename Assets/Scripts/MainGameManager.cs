@@ -13,8 +13,11 @@ public class MainGameManager : MonoBehaviour
     public int soul;
     public int employeesNum;
 
+    private ProgressBar pg;
+
     private void Start()
     {
+        pg = FindObjectOfType<ProgressBar>();
         soulDisplay.text = soul.ToString();
         employeesNum = 0;
     }
@@ -24,6 +27,10 @@ public class MainGameManager : MonoBehaviour
         {
             soulDisplay.text = "0";
             SceneManager.LoadScene("GameOver");
+        }
+        else if (pg.getProgress() >= 1)
+        {
+            SceneManager.LoadScene("Win");
         }
 
         else soulDisplay.text = soul.ToString();

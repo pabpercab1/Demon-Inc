@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ProgressBar : MonoBehaviour
     private float targetProgress = 0;
     private float fillTime = 0.5f;
     private ParticleSystem partSys;
-    
+
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class ProgressBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        increseProgress(0.7f);
+        increseProgress(1f);
     }
 
     // Update is called once per frame
@@ -38,5 +39,9 @@ public class ProgressBar : MonoBehaviour
     {
         targetProgress = slider.value + newProgress;
         
+    }
+    public float getProgress()
+    {
+        return targetProgress;
     }
 }
