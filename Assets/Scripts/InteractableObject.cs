@@ -2,27 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Jobs;
 using UnityEngine.UI;
 
 public class InteractableObject : Action_Menu
 {
     public GameObject menu;
     public Image Image;
+    public GameObject highlight;
+    public GameObject player;
 
+    private float distance;
     protected override void OnCollided(GameObject collidedObject)
     {
+        distance = Vector2.Distance(transform.position, player.transform.position);
+        if (distance < 2.3)
+        {
+            highlight.SetActive(true);
+
+        }
+        else
+        {
+            highlight.SetActive(false);
+            if (menu.activeSelf)
+            {
+                menu.SetActive(false);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(menu.activeSelf) OnInteractClose();
+            if (menu.activeSelf) OnInteractClose();
             else OnInteract();
         }
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) 
-            || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.DownArrow) 
-            || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            OnInteractClose();
-        }
     }
+
+
 
     private void OnInteract()
     {
