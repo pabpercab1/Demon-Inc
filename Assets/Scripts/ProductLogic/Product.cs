@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEditor.VersionControl;
+using System.ComponentModel.Design;
 
 public class Product : MonoBehaviour
 {
@@ -31,13 +32,18 @@ public class Product : MonoBehaviour
     public TMP_Text turnsWithProfit;
     public TMP_Text maliciusPoints;
     public TMP_InputField productName;
+    public TMP_Text historial;
 
+    public GameObject historialMenu;
     public GameObject bosssMenu;
     public TMP_Text buttonText;
     public UnityEngine.UI.Button button;
 
+    public bool historyMenuActive;
+
     private AgeGroup age;
 
+    Dictionary<string, int> historialDic = new Dictionary<string, int>();
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +66,8 @@ public class Product : MonoBehaviour
         profitTurn=0;
         maliciusTotalPoints=0;
 
+        historyMenuActive = false;
+
 }
 
     // Update is called once per frame
@@ -70,7 +78,7 @@ public class Product : MonoBehaviour
             nextIncreaseTime = Time.time + timeBtwDecreases;
             mgm.soul += profitAfterCreationTurn;
         }
-        else if (Time.time > nextIncreaseTime && (isProductCreation && creationTime >= 1))
+        else if(Time.time > nextIncreaseTime && (isProductCreation && creationTime >= 1))
         {
             nextIncreaseTime = Time.time + timeBtwDecreases;
             mgm.soul -= costByCreationTurn;
@@ -84,6 +92,10 @@ public class Product : MonoBehaviour
             isLock = false;
         }
 
+        if (historialMenu.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Q)))
+        {
+            historialMenu.SetActive(false);
+        }
 
         if(!bosssMenu.activeSelf && (costByCreationTurn!=0 || maliciusTotalPoints!=0 || creationTime!=0))
         {
@@ -94,7 +106,7 @@ public class Product : MonoBehaviour
     {
         if (button.onClick != null && isCalculation)
         {
-            CalculateCreationTime(100);
+            CalculateCreationTime(10);
 
             costByCreationTurn = 11;
             profitAfterCreationTurn = age?.obtainAgeInfluence() ?? -1;
@@ -114,6 +126,11 @@ public class Product : MonoBehaviour
             isLock = true;
             buttonText.text = "You need to wait";
             button.interactable = false;
+            historialDic.Add(productName.text, profitAfterCreationTurn);
+            foreach (KeyValuePair<string, int> kvp in historialDic)
+            {
+                historial.text = "Name: " + kvp.Key + "    Profit per turn: " + kvp.Value.ToString();
+            }
         }
 
     }
@@ -183,5 +200,10 @@ public class Product : MonoBehaviour
         {
             productName.text = "The Demon Horns";
         }
+    }
+    public void ActiveMenu()
+    {
+        historyMenuActive = !historyMenuActive;
+        historialMenu.SetActive(historyMenuActive);
     }
 }

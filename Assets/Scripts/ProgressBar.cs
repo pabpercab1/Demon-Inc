@@ -20,7 +20,7 @@ public class ProgressBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        increseProgress(1f);
+        increseProgress(0.65f);
     }
 
     // Update is called once per frame
