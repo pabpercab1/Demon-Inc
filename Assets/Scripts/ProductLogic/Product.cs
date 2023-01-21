@@ -30,6 +30,7 @@ public class Product : MonoBehaviour
     public TMP_Text creationTimeText;
     public TMP_Text turnsWithProfit;
     public TMP_Text maliciusPoints;
+    public TMP_InputField productName;
 
     public GameObject bosssMenu;
     public TMP_Text buttonText;
@@ -152,6 +153,35 @@ public class Product : MonoBehaviour
         else
         {
             creationTime = originalCreationTime;
+        }
+    }
+
+    public void Randomize()
+    {
+        int random = Random.Range(0, 5);
+        if (random == 0)
+        {
+            productName.text = "The Divine Vow";
+        }
+        if (random == 1)
+        {
+            productName.text = "The Iron Golem";
+        }
+        if (random == 2)
+        {
+            productName.text = "The Catastrophe";
+        }
+        if (random == 3)
+        {
+            productName.text = "The Devil's Grimace";
+        }
+        if (random == 4)
+        {
+            productName.text = "The Face of Death";
+        }
+        if (random == 5)
+        {
+            productName.text = "The Demon Horns";
         }
     }
 }
