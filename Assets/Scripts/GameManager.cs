@@ -42,14 +42,12 @@ public class GameManager : MonoBehaviour
         {
             nextDecreaseTime = Time.time + timeBtwDecreases;
             mgm.soul -= soulsDecrease;
-            Debug.Log("se esta quitanmdo dinero");
         }
+        
     }
 
     public void HireEmployee()
     {
-        if (button.onClick != null)
-        {
             if (hired.activeSelf)
             {
                 hired.SetActive(false);
@@ -64,9 +62,8 @@ public class GameManager : MonoBehaviour
                 mgm.soul -= salary;
                 buttonText.text = "Fire";
                 mgm.employeesNum += 1;
-
+                Debug.Log(hired.name);
             }
-        }
 
     }
 }
