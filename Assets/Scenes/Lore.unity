@@ -715,7 +715,7 @@ MonoBehaviour:
     is born, we lose. "
   - "It would be the end for us, he would save many souls, and we won\u2019t  be
     able to do anything to change that. "
-  - "That\u2019s why we should collect as much souls as possible before that happen. "
+  - "That\u2019s why we should collect as many souls as possible before that happens. "
   - 'You have been out for a while, so I will remind you how everything works. '
   button: {fileID: 856581316}
   textSpeed: 0.1
@@ -1669,6 +1669,8 @@ MonoBehaviour:
     maxNormalAngle: 0
   menu: {fileID: 0}
   Image: {fileID: 0}
+  highlight: {fileID: 0}
+  player: {fileID: 0}
 --- !u!58 &908125487
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2181,6 +2183,8 @@ MonoBehaviour:
     maxNormalAngle: 0
   menu: {fileID: 0}
   Image: {fileID: 0}
+  highlight: {fileID: 0}
+  player: {fileID: 0}
 --- !u!58 &1118559409
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2839,6 +2843,8 @@ MonoBehaviour:
     maxNormalAngle: 0
   menu: {fileID: 0}
   Image: {fileID: 0}
+  highlight: {fileID: 0}
+  player: {fileID: 0}
 --- !u!58 &1292997681
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2943,6 +2949,8 @@ MonoBehaviour:
     maxNormalAngle: 0
   menu: {fileID: 0}
   Image: {fileID: 0}
+  highlight: {fileID: 0}
+  player: {fileID: 0}
 --- !u!58 &1336534307
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3951,7 +3959,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7371,6 +7379,8 @@ MonoBehaviour:
     maxNormalAngle: 0
   menu: {fileID: 0}
   Image: {fileID: 0}
+  highlight: {fileID: 0}
+  player: {fileID: 0}
 --- !u!58 &1868037449
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8390,6 +8400,8 @@ MonoBehaviour:
     maxNormalAngle: 0
   menu: {fileID: 0}
   Image: {fileID: 0}
+  highlight: {fileID: 0}
+  player: {fileID: 0}
 --- !u!58 &2138595183
 CircleCollider2D:
   m_ObjectHideFlags: 0
