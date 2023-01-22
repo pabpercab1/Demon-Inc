@@ -15,7 +15,7 @@ public class YearProgress : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        yearCounterIndex = 666;
+        yearCounterIndex = 466;
         yearCounter.text = yearCounterIndex.ToString();
 
         timeBtwDecreases = 2;
