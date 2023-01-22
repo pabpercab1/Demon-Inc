@@ -15,6 +15,14 @@ public class TutorialHelper : MonoBehaviour
     public GameObject highlightYear;
     public GameObject highlightSouls;
     public GameObject highlightBar;
+    public GameObject highlightLossTurns;
+    public GameObject highlightProfitTurns;
+    public GameObject highlightPoints;
+    public GameObject highlightOptions;
+    public GameObject bossMenu;
+
+
+
 
     public TMP_Text fullScreenText;
     public TMP_Text cornerText;
@@ -107,41 +115,65 @@ public class TutorialHelper : MonoBehaviour
             fullScreenText.text = string.Empty;
             cornerText.text = string.Empty;
             StartCoroutine(TypeLine());
-            if (index > 0)
+            if (index > 0 && index < 3)
             {
                 full.SetActive(false);
                 corner.SetActive(true);
                 highlightEmp.SetActive(true);
 
             }
-            if (index > 2)
+            if (index == 3)
             {
                 highlightEmp.SetActive(false);
                 highlightBoss.SetActive(true);
             }
-            if (index > 4) 
+            if (index == 4) 
             {
                 highlightBoss.SetActive(false);
+                bossMenu.SetActive(true);
+                highlightPoints.SetActive(true);
+            }
+            if (index == 5)
+            {
+                highlightPoints.SetActive(false);
+                highlightOptions.SetActive(true);
+            }
+            if (index == 6)
+            {
+                highlightOptions.SetActive(false);
+                highlightLossTurns.SetActive(true);
+                highlightPoints.SetActive(true);
+            }
+            if (index == 7)
+            {
+                highlightLossTurns.SetActive(false);
+                highlightPoints.SetActive(false);
+                highlightProfitTurns.SetActive(true);
+            }
+            if (index == 8)
+            {
+                highlightProfitTurns.SetActive(false);
+                bossMenu.SetActive(false);
                 corner.SetActive(false);
                 full.SetActive(true);
                 highlightRecord.SetActive(true);
             }
-            if (index > 5)
+            if (index == 9)
             {
                 highlightRecord.SetActive(false);
                 highlightSouls.SetActive(true);
             }
-            if (index > 6)
+            if (index == 10)
             {
                 highlightSouls.SetActive(false);
                 highlightYear.SetActive(true);
             }
-            if (index > 7)
+            if (index == 11)
             {
                 highlightYear.SetActive(false);
                 highlightBar.SetActive(true);
             }
-            if (index > 8)
+            if (index == 12)
             {
                 highlightBar.SetActive(false);
             }
@@ -172,29 +204,53 @@ public class TutorialHelper : MonoBehaviour
                 highlightBoss.SetActive(false);
                 highlightEmp.SetActive(true);
             }
-            if (index < 5 && index >= 3)
+            if (index == 3)
             {
-                full.SetActive(false);
-                corner.SetActive(true);
+                highlightPoints.SetActive(false);
+                bossMenu.SetActive(false);
                 highlightBoss.SetActive(true);
-                highlightRecord.SetActive(false);
+            }
+            if (index == 4)
+            {
+                highlightOptions.SetActive(false);
+                highlightPoints.SetActive(true);
             }
             if (index == 5)
+            {
+                highlightLossTurns.SetActive(false);
+                highlightPoints.SetActive(false);
+                highlightOptions.SetActive(true);
+            }
+            if (index == 6)
+            {
+                highlightProfitTurns.SetActive(false);
+                highlightPoints.SetActive(true);
+                highlightLossTurns.SetActive(true);
+            }
+            if (index == 7)
+            {
+                full.SetActive(false);
+                highlightRecord.SetActive(false);
+                corner.SetActive(true);
+                bossMenu.SetActive(true);
+                highlightProfitTurns.SetActive(true);
+            }
+            if (index == 8)
             {
                 highlightSouls.SetActive(false);
                 highlightRecord.SetActive(true);
             }
-            if (index == 6)
+            if (index == 9)
             {
                 highlightYear.SetActive(false);
                 highlightSouls.SetActive(true);
             }
-            if (index == 7)
+            if (index == 10)
             {
                 highlightBar.SetActive(false);
                 highlightYear.SetActive(true);
             }
-            if (index == 8)
+            if (index == 11)
             {
                 highlightBar.SetActive(true);
             }
