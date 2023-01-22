@@ -13,6 +13,8 @@ public class MainGameManager : MonoBehaviour
     public int soul;
     public int employeesNum;
 
+    public static int staticSouls;
+
     private ProgressBar pg;
 
     private void Start()
@@ -20,6 +22,7 @@ public class MainGameManager : MonoBehaviour
         pg = FindObjectOfType<ProgressBar>();
         soulDisplay.text = soul.ToString();
         employeesNum = 0;
+        staticSouls = 0;
     }
     void Update()
     {
@@ -30,6 +33,7 @@ public class MainGameManager : MonoBehaviour
         }
         else if (pg.getProgress() >= 1)
         {
+            staticSouls = soul;
             SceneManager.LoadScene("Win");
         }
 

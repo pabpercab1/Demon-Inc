@@ -15,7 +15,7 @@ public class DeadSin : MonoBehaviour
     private void Start()
     {
         PopulateList();
-        DeadSinInfluence = 0;
+        DeadSinInfluence = 3;
     }
 
     void PopulateList()
@@ -27,7 +27,7 @@ public class DeadSin : MonoBehaviour
     {
         if (index == 0)
         {
-            DeadSinInfluence = 4;
+            DeadSinInfluence = 3;
             Debug.Log("OPCION 0");
         }
         else if (index == 1)

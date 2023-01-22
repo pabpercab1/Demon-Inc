@@ -28,20 +28,20 @@ public class Puntuacion : MonoBehaviour
     {
         
     }
-    public static int computePoints()
+    public int computePoints()
     {
-        //points = age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
-        //if (points >= 9 && points <15)
-        //{
-        //    product.CalculateMaliciusPoints(1,5);
-        //}
-        //else if (points >= 15 && points < 25)
-        //{
-        //    product.CalculateMaliciusPoints(2, 8);
-        //} 
-        //else product.CalculateMaliciusPoints(4, 12);
+        points = age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
+        if (points >= 9 && points <15)
+        {
+            product.CalculateMaliciusPoints(1,5);
+        }
+        else if (points >= 15 && points < 25)
+        {
+            product.CalculateMaliciusPoints(2, 8);
+        } 
+        else product.CalculateMaliciusPoints(4, 12);
 
-        return 1000;  
+        return points;  
     }
 
     public int RandEmpl()

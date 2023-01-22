@@ -37,8 +37,15 @@ public class ProgressBar : MonoBehaviour
     }
     public void increseProgress(float newProgress)
     {
-        targetProgress = slider.value + newProgress;
-        
+        if(newProgress + slider.value < 1f)
+        {
+            targetProgress = slider.value + newProgress;
+
+        }
+        else
+        {
+            targetProgress = 1f;
+        }
     }
     public float getProgress()
     {

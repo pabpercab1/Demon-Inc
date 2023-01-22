@@ -15,7 +15,7 @@ public class Propagation : MonoBehaviour
     private void Start()
     {
         PopulateList();
-        PropInfluence = 0;
+        PropInfluence = 5;
     }
 
     void PopulateList()

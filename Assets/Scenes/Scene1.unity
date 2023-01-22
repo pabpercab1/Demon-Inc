@@ -7135,7 +7135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hire (Q)
+  m_text: 'Hire
 
 '
   m_isRightToLeft: 0
@@ -17532,7 +17532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hire (Q)
+  m_text: 'Hire
 
 '
   m_isRightToLeft: 0
@@ -23853,7 +23853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hire (Q)
+  m_text: 'Hire
 
 '
   m_isRightToLeft: 0
@@ -24844,7 +24844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hire (Q)
+  m_text: 'Hire
 
 '
   m_isRightToLeft: 0

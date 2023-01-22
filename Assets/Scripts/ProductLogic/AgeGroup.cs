@@ -17,7 +17,7 @@ public class AgeGroup : MonoBehaviour
     private void Start()
     {
         PopulateList();
-        ageGroupInfluence = 5;
+        ageGroupInfluence = 3;
     }
 
     void PopulateList()
@@ -29,7 +29,7 @@ public class AgeGroup : MonoBehaviour
     {
         if (index == 0)
         {
-            ageGroupInfluence = 5;
+            ageGroupInfluence = 3;
             Debug.Log("OPCION 0");
         }
         else if (index == 1)

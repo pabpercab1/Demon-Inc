@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 using UnityEditor.VersionControl;
 using System.ComponentModel.Design;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class Product : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class Product : MonoBehaviour
     private bool isProductAcive;
     private bool isProductCreation;
     private bool isCalculation;
-    private int developTimeProduct;
     private int creationTime;
     private int costByCreationTurn;
     private int profitAfterCreationTurn;
@@ -39,15 +39,21 @@ public class Product : MonoBehaviour
     public UnityEngine.UI.Button button;
 
     private AgeGroup age;
+    private Propagation prop;
+    private DeadSin sin;
     private HistoryProducts hp;
     private ProgressBar pb;
     private Puntuacion punt;
+
+    private int points;
 
     // Start is called before the first frame update
     void Start()
     {
         mgm = FindObjectOfType<MainGameManager>();
         age = FindObjectOfType<AgeGroup>();
+        prop = FindObjectOfType<Propagation>();
+        sin = FindObjectOfType<DeadSin>();
         hp = FindObjectOfType<HistoryProducts>();
         pb = FindObjectOfType<ProgressBar>();
         punt = FindObjectOfType<Puntuacion>();
@@ -62,7 +68,6 @@ public class Product : MonoBehaviour
         isCalculation = true;
         isLock = false;
 
-        developTimeProduct=0;
         creationTime=0;
         costByCreationTurn=0;
         profitAfterCreationTurn=0;
@@ -78,6 +83,7 @@ public class Product : MonoBehaviour
         {
             nextIncreaseTime = Time.time + timeBtwDecreases;
             mgm.soul += profitAfterCreationTurn;
+            profitTurn--;
         }
         else if(Time.time > nextIncreaseTime && (isProductCreation && creationTime >= 1))
         {
@@ -95,6 +101,10 @@ public class Product : MonoBehaviour
             button.interactable = true;
             CancelCreation();   
         }
+        else if (isProductAcive && profitTurn < 1)
+        {
+            isProductAcive = false;
+        }
 
         if(!bosssMenu.activeSelf && (costByCreationTurn!=0 || maliciusTotalPoints!=0 || creationTime!=0))
         {
@@ -105,14 +115,11 @@ public class Product : MonoBehaviour
     {
         if (button.onClick != null && isCalculation)
         {
-            CalculateCreationTime(10);
+            CalculateCreationTime(Random.Range(7,10));
 
-            costByCreationTurn = 11;
-            profitAfterCreationTurn = punt?.computePoints() ?? 0;
-            //pt.RandEmpl()*pt.computePoints()/100 + pt.computePoints();
-            profitTurn = 5;
-            //CalculateMaliciusPoints(2, 7);
-            Debug.Log("AAAAAAAAAA: " + profitAfterCreationTurn.ToString());
+            
+            profitAfterCreationTurn = RandEmpl() * computePoints()/100 + computePoints();
+            costByCreationTurn = profitAfterCreationTurn / 3;
 
             creationTimeText.text = creationTime.ToString();
             turnsWithProfit.text = profitTurn.ToString();
@@ -123,12 +130,19 @@ public class Product : MonoBehaviour
         }
         else if (button.onClick != null && isCalculation==false)
         {
-            pb.increseProgress(maliciusTotalPoints*0.01f);
-            isProductCreation = true;
-            isLock = true;
-            buttonText.text = "You need to wait";
-            button.interactable = false;
-            hp.AddOnProductcreation();
+            if ((RandEmpl() * computePoints() / 100 + computePoints()) != profitAfterCreationTurn)
+            {
+                CancelCreation();
+            }
+            else
+            {
+                pb.increseProgress(maliciusTotalPoints * 0.01f);
+                isProductCreation = true;
+                isLock = true;
+                buttonText.text = "You need to wait";
+                button.interactable = false;
+                hp.AddOnProductcreation();
+            }
         }
 
     }
@@ -169,6 +183,52 @@ public class Product : MonoBehaviour
         {
             creationTime = originalCreationTime;
         }
+    }
+    public int computePoints()
+    {
+        points = age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
+        if (points < 15)
+        {
+            CalculateMaliciusPoints(1, 5);
+            profitTurn = Random.Range(2, 6);
+        }
+        else if (points >= 15 && points < 25)
+        {
+            CalculateMaliciusPoints(2, 8);
+            profitTurn = Random.Range(4, 8);
+        }
+        else
+        {
+            CalculateMaliciusPoints(4, 12);
+            profitTurn = Random.Range(5, 10);
+        }
+        return points;
+    }
+
+    public int RandEmpl()
+    {
+        int bonification = 0;
+        if (mgm.employeesNum == 1)
+        {
+            bonification = Random.Range(0, 20);
+        }
+        else if (mgm.employeesNum == 2)
+        {
+            bonification = Random.Range(10, 30);
+        }
+        else if (mgm.employeesNum == 3)
+        {
+            bonification = Random.Range(20, 40);
+        }
+        else if (mgm.employeesNum == 4)
+        {
+            bonification = Random.Range(30, 50);
+        }
+        else if (mgm.employeesNum == 4)
+        {
+            bonification = Random.Range(40, 60);
+        }
+        return bonification;
     }
 
     public void Randomize()
