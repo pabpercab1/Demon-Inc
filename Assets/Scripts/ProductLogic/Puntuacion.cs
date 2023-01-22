@@ -19,6 +19,8 @@ public class Puntuacion : MonoBehaviour
         age = FindObjectOfType<AgeGroup>();
         product = FindObjectOfType<Product>();
         mgm = FindObjectOfType<MainGameManager>();
+
+        points = 0;
     }
 
     // Update is called once per frame
@@ -26,20 +28,20 @@ public class Puntuacion : MonoBehaviour
     {
         
     }
-    public int computePoints()
+    public static int computePoints()
     {
-        points = age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
-        if (points >= 9 && points <15)
-        {
-            product.CalculateMaliciusPoints(1,5);
-        }
-        else if (points >= 15 && points < 25)
-        {
-            product.CalculateMaliciusPoints(2, 8);
-        } 
-        else product.CalculateMaliciusPoints(4, 12);
+        //points = age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
+        //if (points >= 9 && points <15)
+        //{
+        //    product.CalculateMaliciusPoints(1,5);
+        //}
+        //else if (points >= 15 && points < 25)
+        //{
+        //    product.CalculateMaliciusPoints(2, 8);
+        //} 
+        //else product.CalculateMaliciusPoints(4, 12);
 
-        return points;  
+        return 1000;  
     }
 
     public int RandEmpl()
