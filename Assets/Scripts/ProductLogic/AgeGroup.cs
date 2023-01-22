@@ -29,23 +29,23 @@ public class AgeGroup : MonoBehaviour
     {
         if (index == 0)
         {
-            ageGroupInfluence = 10;
+            ageGroupInfluence = 5;
             Debug.Log("OPCION 0");
         }
         else if (index == 1)
         {
-            ageGroupInfluence = 20;
+            ageGroupInfluence = 7;
             Debug.Log("OPCION 1");
         }
         else if (index == 2)
         {
-            ageGroupInfluence = 30;
+            ageGroupInfluence = 10;
             Debug.Log("OPCION 2");
         }
         else if (index == 3)
         {
-            ageGroupInfluence = 40;
-            Debug.Log("OPCION 4");
+            ageGroupInfluence = 3;
+            Debug.Log("OPCION 3");
         }
         else ageGroupInfluence = 0;
     }

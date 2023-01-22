@@ -37,4 +37,8 @@ public class YearProgress : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
+    public int whatYear()
+    {
+        return yearCounterIndex;
+    }
 }

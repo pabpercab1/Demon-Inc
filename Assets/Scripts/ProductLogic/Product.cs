@@ -34,22 +34,24 @@ public class Product : MonoBehaviour
     public TMP_Text maliciusPoints;
     public TMP_InputField productName;
     public TMP_Text historial;
-
-    public GameObject historialMenu;
     public GameObject bosssMenu;
     public TMP_Text buttonText;
     public UnityEngine.UI.Button button;
 
-    private bool historyMenuActive;
-
     private AgeGroup age;
+    private HistoryProducts hp;
+    private ProgressBar pb;
+    private Puntuacion pt;
 
-    Dictionary<string, int> historialDic = new Dictionary<string, int>();
     // Start is called before the first frame update
     void Start()
     {
         mgm = FindObjectOfType<MainGameManager>();
         age = FindObjectOfType<AgeGroup>();
+        hp = FindObjectOfType<HistoryProducts>();
+        pb = FindObjectOfType<ProgressBar>();
+        pt = FindObjectOfType<Puntuacion>();
+
         buttonText.text = "Calculate Product";
 
         creationTimeText.text = "0";
@@ -66,8 +68,6 @@ public class Product : MonoBehaviour
         profitAfterCreationTurn=0;
         profitTurn=0;
         maliciusTotalPoints=0;
-
-        historyMenuActive = false;
 
 }
 
@@ -92,11 +92,7 @@ public class Product : MonoBehaviour
             isProductAcive = true;
             isLock = false;
             button.interactable = true;
-        }
-
-        if (historialMenu.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Q)))
-        {
-            historialMenu.SetActive(false);
+            CancelCreation();   
         }
 
         if(!bosssMenu.activeSelf && (costByCreationTurn!=0 || maliciusTotalPoints!=0 || creationTime!=0))
@@ -111,9 +107,11 @@ public class Product : MonoBehaviour
             CalculateCreationTime(10);
 
             costByCreationTurn = 11;
-            profitAfterCreationTurn = age?.obtainAgeInfluence() ?? -1;
+            profitAfterCreationTurn = pt.RandEmpl()*pt.computePoints()/100 + pt.computePoints();
             profitTurn = 5;
-            CalculateMaliciusPoints(1, 6);
+            //CalculateMaliciusPoints(1, 6);
+            pt.computePoints();
+            Debug.Log("AAAAAAAAAAAAA: " + profitAfterCreationTurn.ToString());
 
             creationTimeText.text = creationTime.ToString();
             turnsWithProfit.text = profitTurn.ToString();
@@ -124,15 +122,12 @@ public class Product : MonoBehaviour
         }
         else if (button.onClick != null && isCalculation==false)
         {
+            pb.increseProgress(maliciusTotalPoints*0.01f);
             isProductCreation = true;
             isLock = true;
             buttonText.text = "You need to wait";
             button.interactable = false;
-            historialDic.Add(productName.text, profitAfterCreationTurn);
-            for (int i = 0; i < historialDic.Count; i++)
-            {
-                historial.text = "Name: "+historialDic.ElementAt(i).Key.ToString() +"    Profit: "+ historialDic.ElementAt(i).Value.ToString() + System.Environment.NewLine;
-            }
+            hp.AddOnProductcreation();
         }
 
     }
@@ -151,15 +146,15 @@ public class Product : MonoBehaviour
         }
     }
 
-    private void CalculateMaliciusPoints(int minMalicius, int maxMalicius)  
+    public void CalculateMaliciusPoints(int minMalicius, int maxMalicius)  
     {
 
         maliciusTotalPoints = Random.Range(minMalicius, maxMalicius);
 
-        string sWord1 = minMalicius.ToString();
+        //string sWord1 = minMalicius.ToString();
         string sWord2 = maxMalicius.ToString();
 
-        maliciusPoints.text = sWord1+" to "+sWord2;
+        maliciusPoints.text = "Up to "+sWord2;
     }
 
     private void CalculateCreationTime(int originalCreationTime)
@@ -203,10 +198,9 @@ public class Product : MonoBehaviour
             productName.text = "The Demon Horns";
         }
     }
-    public void ActiveMenu()
+
+    public int profitAfterCreation()
     {
-        historyMenuActive = !historyMenuActive;
-        historialMenu.SetActive(historyMenuActive);
-        Debug.Log(historialDic.Count.ToString());
+        return profitAfterCreationTurn;
     }
 }

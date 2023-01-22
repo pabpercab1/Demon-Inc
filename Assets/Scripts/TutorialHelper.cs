@@ -7,11 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class TutorialHelper : MonoBehaviour
 {
-    public GameObject secretario;
-    public GameObject dialoguePanel;
+    public GameObject full;
+    public GameObject corner;
     public GameObject highlightEmp;
     public GameObject highlightBoss;
-    public TMP_Text textComponent;
+    public GameObject highlightRecord;
+    public GameObject highlightYear;
+    public GameObject highlightSouls;
+    public GameObject highlightBar;
+
+    public TMP_Text fullScreenText;
+    public TMP_Text cornerText;
     public string[] lines;
 
     public float textSpeed;
@@ -19,7 +25,8 @@ public class TutorialHelper : MonoBehaviour
    
     void Start()
     {
-        textComponent.text = string.Empty;
+        fullScreenText.text = string.Empty;
+        cornerText.text = string.Empty;
         StartDialogue();
     }
 
@@ -28,30 +35,41 @@ public class TutorialHelper : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if(textComponent.text == lines[index])
+            if(fullScreenText.text == lines[index] || cornerText.text == lines[index])
             {
                 NextLine();
 
             }
+            else if (fullScreenText.IsActive())
+            {
+                StopAllCoroutines();
+                fullScreenText.text = lines[index];
+            }
             else
             {
                 StopAllCoroutines();
-                textComponent.text = lines[index];
+                cornerText.text = lines[index];
             }
         }
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (textComponent.text == lines[index])
+            if (fullScreenText.text == lines[index] || cornerText.text == lines[index])
             {
                 PreviousLine();
 
             }
+            else if (fullScreenText.IsActive())
+            {
+                StopAllCoroutines();
+               fullScreenText.text = lines[index];
+            }
             else
             {
                 StopAllCoroutines();
-                textComponent.text = lines[index];
+                cornerText.text = lines[index];
             }
         }
+    
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Skip();
@@ -72,7 +90,11 @@ public class TutorialHelper : MonoBehaviour
     {
         foreach (char c in lines[index].ToCharArray())
         {
-            textComponent.text += c;
+            if (fullScreenText.IsActive())
+            {
+                fullScreenText.text += c;
+            }
+            else cornerText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
@@ -82,11 +104,13 @@ public class TutorialHelper : MonoBehaviour
         if (index < lines.Length - 1)
         {
             index++;
-            textComponent.text = string.Empty;
+            fullScreenText.text = string.Empty;
+            cornerText.text = string.Empty;
             StartCoroutine(TypeLine());
             if (index > 0)
             {
-                secretario.SetActive(false);
+                full.SetActive(false);
+                corner.SetActive(true);
                 highlightEmp.SetActive(true);
 
             }
@@ -95,10 +119,30 @@ public class TutorialHelper : MonoBehaviour
                 highlightEmp.SetActive(false);
                 highlightBoss.SetActive(true);
             }
-            if (index > 3) 
+            if (index > 4) 
             { 
-                highlightBoss.SetActive(false);
-                secretario.SetActive(true);
+                corner.SetActive(false);
+                full.SetActive(true);
+                highlightRecord.SetActive(true);
+            }
+            if (index > 5)
+            {
+                highlightRecord.SetActive(false);
+                highlightSouls.SetActive(true);
+            }
+            if (index > 6)
+            {
+                highlightSouls.SetActive(false);
+                highlightYear.SetActive(true);
+            }
+            if (index > 7)
+            {
+                highlightYear.SetActive(false);
+                highlightBar.SetActive(true);
+            }
+            if (index > 5)
+            {
+                highlightBar.SetActive(false);
             }
         }
         else
@@ -108,28 +152,45 @@ public class TutorialHelper : MonoBehaviour
         }   
     }
 
-    void PreviousLine()
+   void PreviousLine()
     {
+        if (index == 0)
+        {
+            corner.SetActive(false);
+            full.SetActive(true);
+        }
         if (index > 0)
         {
             index--;
-            textComponent.text = string.Empty;
+            fullScreenText.text = string.Empty;
+            cornerText.text = string.Empty;
             StartCoroutine(TypeLine());
-            if (index < 1)
-            {
-                secretario.SetActive(false);
-                highlightEmp.SetActive(true);
-
-            }
             if (index < 3)
             {
+                highlightEmp.SetActive(true);
+                highlightBoss.SetActive(false);
+            }
+            if (index < 5)
+            {
+                corner.SetActive(true);
+                full.SetActive(false);
                 highlightEmp.SetActive(false);
                 highlightBoss.SetActive(true);
             }
-            if (index < 4)
+            if (index < 6)
             {
-                highlightBoss.SetActive(false);
-                secretario.SetActive(true);
+                highlightSouls.SetActive(false);
+                highlightRecord.SetActive(true);
+            }
+            if (index < 7)
+            {
+                highlightYear.SetActive(false);
+                highlightSouls.SetActive(true);
+            }
+            if (index < 8)
+            {
+                highlightBar.SetActive(false);
+                highlightYear.SetActive(true);
             }
         }
 
