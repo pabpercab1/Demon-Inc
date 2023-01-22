@@ -257,9 +257,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '40
+  m_text: '25
 
-    35'
+    20'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac8f0ac65b3fe488db206fadc35ec531, type: 2}
   m_sharedMaterial: {fileID: -6670601752369310557, guid: ac8f0ac65b3fe488db206fadc35ec531, type: 2}
@@ -7350,8 +7350,8 @@ MonoBehaviour:
   hired: {fileID: 1874078135}
   buttonText: {fileID: 575051871}
   button: {fileID: 795258415}
-  salary: 120
-  soulsDecrease: 100
+  salary: 65
+  soulsDecrease: 60
   timeBtwDecreases: 2
 --- !u!1 &431972912
 GameObject:
@@ -7385,8 +7385,8 @@ MonoBehaviour:
   hired: {fileID: 1252517521}
   buttonText: {fileID: 403853769}
   button: {fileID: 1508982059}
-  salary: 40
-  soulsDecrease: 35
+  salary: 25
+  soulsDecrease: 20
   timeBtwDecreases: 2
 --- !u!224 &431972914
 RectTransform:
@@ -8836,9 +8836,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '80
+  m_text: '40
 
-    65'
+    55'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac8f0ac65b3fe488db206fadc35ec531, type: 2}
   m_sharedMaterial: {fileID: -6670601752369310557, guid: ac8f0ac65b3fe488db206fadc35ec531, type: 2}
@@ -8967,8 +8967,8 @@ MonoBehaviour:
   hired: {fileID: 1344103350}
   buttonText: {fileID: 1515136066}
   button: {fileID: 828981246}
-  salary: 80
-  soulsDecrease: 65
+  salary: 40
+  soulsDecrease: 55
   timeBtwDecreases: 2
 --- !u!1 &621993570
 GameObject:
@@ -21422,9 +21422,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '120
+  m_text: '65
 
-    100'
+    60'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac8f0ac65b3fe488db206fadc35ec531, type: 2}
   m_sharedMaterial: {fileID: -6670601752369310557, guid: ac8f0ac65b3fe488db206fadc35ec531, type: 2}
