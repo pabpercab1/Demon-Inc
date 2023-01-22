@@ -33,12 +33,12 @@ public class TutorialHelper : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(index.ToString());
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             if(fullScreenText.text == lines[index] || cornerText.text == lines[index])
             {
                 NextLine();
-
             }
             else if (fullScreenText.IsActive())
             {
@@ -60,7 +60,7 @@ public class TutorialHelper : MonoBehaviour
             }
             else if (fullScreenText.IsActive())
             {
-                StopAllCoroutines();
+               StopAllCoroutines();
                fullScreenText.text = lines[index];
             }
             else
@@ -120,7 +120,8 @@ public class TutorialHelper : MonoBehaviour
                 highlightBoss.SetActive(true);
             }
             if (index > 4) 
-            { 
+            {
+                highlightBoss.SetActive(false);
                 corner.SetActive(false);
                 full.SetActive(true);
                 highlightRecord.SetActive(true);
@@ -140,7 +141,7 @@ public class TutorialHelper : MonoBehaviour
                 highlightYear.SetActive(false);
                 highlightBar.SetActive(true);
             }
-            if (index > 5)
+            if (index > 8)
             {
                 highlightBar.SetActive(false);
             }
@@ -153,45 +154,54 @@ public class TutorialHelper : MonoBehaviour
     }
 
    void PreviousLine()
-    {
-        if (index == 0)
-        {
-            corner.SetActive(false);
-            full.SetActive(true);
-        }
+    { 
         if (index > 0)
         {
             index--;
             fullScreenText.text = string.Empty;
             cornerText.text = string.Empty;
             StartCoroutine(TypeLine());
-            if (index < 3)
+            if (index == 0)
             {
-                highlightEmp.SetActive(true);
-                highlightBoss.SetActive(false);
-            }
-            if (index < 5)
-            {
-                corner.SetActive(true);
-                full.SetActive(false);
+                corner.SetActive(false);
                 highlightEmp.SetActive(false);
-                highlightBoss.SetActive(true);
+                full.SetActive(true);
             }
-            if (index < 6)
+            if (index < 3 && index != 0)
+            {
+                highlightBoss.SetActive(false);
+                highlightEmp.SetActive(true);
+            }
+            if (index < 5 && index >= 3)
+            {
+                full.SetActive(false);
+                corner.SetActive(true);
+                highlightBoss.SetActive(true);
+                highlightRecord.SetActive(false);
+            }
+            if (index == 5)
             {
                 highlightSouls.SetActive(false);
                 highlightRecord.SetActive(true);
             }
-            if (index < 7)
+            if (index == 6)
             {
                 highlightYear.SetActive(false);
                 highlightSouls.SetActive(true);
             }
-            if (index < 8)
+            if (index == 7)
             {
                 highlightBar.SetActive(false);
                 highlightYear.SetActive(true);
             }
+            if (index == 8)
+            {
+                highlightBar.SetActive(true);
+            }
+        }
+        else
+        {
+
         }
 
     }
