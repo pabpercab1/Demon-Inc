@@ -41,7 +41,7 @@ public class Product : MonoBehaviour
     private AgeGroup age;
     private HistoryProducts hp;
     private ProgressBar pb;
-    private Puntuacion pt;
+    private Puntuacion punt;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class Product : MonoBehaviour
         age = FindObjectOfType<AgeGroup>();
         hp = FindObjectOfType<HistoryProducts>();
         pb = FindObjectOfType<ProgressBar>();
-        pt = FindObjectOfType<Puntuacion>();
+        punt = FindObjectOfType<Puntuacion>();
 
         buttonText.text = "Calculate Product";
 
@@ -84,6 +84,7 @@ public class Product : MonoBehaviour
             nextIncreaseTime = Time.time + timeBtwDecreases;
             mgm.soul -= costByCreationTurn;
             creationTime -= 1;
+            creationTimeText.text = creationTime.ToString();
 
         }
         else if (isProductCreation && creationTime < 1)
@@ -107,11 +108,11 @@ public class Product : MonoBehaviour
             CalculateCreationTime(10);
 
             costByCreationTurn = 11;
-            profitAfterCreationTurn = pt.RandEmpl()*pt.computePoints()/100 + pt.computePoints();
+            profitAfterCreationTurn = punt?.computePoints() ?? 0;
+            //pt.RandEmpl()*pt.computePoints()/100 + pt.computePoints();
             profitTurn = 5;
-            //CalculateMaliciusPoints(1, 6);
-            pt.computePoints();
-            Debug.Log("AAAAAAAAAAAAA: " + profitAfterCreationTurn.ToString());
+            //CalculateMaliciusPoints(2, 7);
+            Debug.Log("AAAAAAAAAA: " + profitAfterCreationTurn.ToString());
 
             creationTimeText.text = creationTime.ToString();
             turnsWithProfit.text = profitTurn.ToString();

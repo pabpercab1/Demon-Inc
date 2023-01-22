@@ -17,7 +17,7 @@ public class AgeGroup : MonoBehaviour
     private void Start()
     {
         PopulateList();
-        ageGroupInfluence = 10;
+        ageGroupInfluence = 5;
     }
 
     void PopulateList()
