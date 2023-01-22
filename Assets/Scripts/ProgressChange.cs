@@ -22,7 +22,10 @@ public class ProgressChange : MonoBehaviour
         float demonsText = pg.getProgress()*100f;
         float angelstext = 100f - demonsText;
 
-        demons.text = demonsText.ToString();
-        angels.text = angelstext.ToString();
+        int realDemon = (int)demonsText;
+        int realAngel = (int)angelstext;
+
+        demons.text = realDemon.ToString();
+        angels.text = realAngel.ToString();
     }
 }

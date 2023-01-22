@@ -21,13 +21,14 @@ public class GameManager : MonoBehaviour
     private float nextDecreaseTime;
 
     private MainGameManager mgm;
-
+    private ProgressBar pb;
 
 
 
     void Start()
     {
         mgm = FindObjectOfType<MainGameManager>();
+        pb = FindObjectOfType<ProgressBar>();
 
     }
 
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
                 mgm.soul += salary / 3;
                 buttonText.text = "Hire";
                 mgm.employeesNum -= 1;
+                pb.decreaseProgress(Random.Range(4, 6) * 0.01f);
 
             }
             else if (mgm.soul >= salary)
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
                 buttonText.text = "Fire";
                 mgm.employeesNum += 1;
                 Debug.Log(hired.name);
+                pb.increseProgress(Random.Range(2, 6) * 0.01f);
             }
 
     }

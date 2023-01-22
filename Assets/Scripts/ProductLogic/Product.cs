@@ -27,6 +27,8 @@ public class Product : MonoBehaviour
     private int profitTurn;
     private int maliciusTotalPoints;
 
+    private int checksum;
+
     public TMP_Text creationTimeText;
     public TMP_Text turnsWithProfit;
     public TMP_Text maliciusPoints;
@@ -117,6 +119,7 @@ public class Product : MonoBehaviour
 
             
             profitAfterCreationTurn = RandEmpl() * computePoints()/100 + computePoints();
+            checksum= age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
             costByCreationTurn = profitAfterCreationTurn / 3;
 
             creationTimeText.text = creationTime.ToString();
@@ -128,7 +131,8 @@ public class Product : MonoBehaviour
         }
         else if (button.onClick != null && isCalculation==false)
         {
-            if ((RandEmpl() * computePoints() / 100 + computePoints()) != profitAfterCreationTurn)
+            int checksum2 = age.obtainAgeInfluence() + prop.obtainPropInfluence() + sin.obtainSinInfluence();
+            if (checksum2 != checksum)
             {
                 CancelCreation();
             }
@@ -231,7 +235,7 @@ public class Product : MonoBehaviour
 
     public void Randomize()
     {
-        int random = Random.Range(0, 5);
+        int random = Random.Range(0, 6);
         if (random == 0)
         {
             productName.text = "The Divine Vow";
@@ -255,6 +259,10 @@ public class Product : MonoBehaviour
         if (random == 5)
         {
             productName.text = "The Demon Horns";
+        }
+        if (random == 6)
+        {
+            productName.text = "Demonic Power";
         }
     }
 

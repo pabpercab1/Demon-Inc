@@ -10,6 +10,7 @@ public class ProgressBar : MonoBehaviour
     private float targetProgress = 0;
     private float fillTime = 0.5f;
     private ParticleSystem partSys;
+    private bool decrease;
 
 
     private void Awake()
@@ -32,6 +33,13 @@ public class ProgressBar : MonoBehaviour
             if (!partSys.isPlaying)
                 partSys.Play();
         }
+        else if(slider.value > targetProgress && decrease)
+        {
+            slider.value =- fillTime * Time.deltaTime;
+            if (!partSys.isPlaying)
+                partSys.Play();
+            decrease = false;
+        }
         else
             partSys.Stop();
     }
@@ -50,5 +58,15 @@ public class ProgressBar : MonoBehaviour
     public float getProgress()
     {
         return targetProgress;
+    }
+
+    public void decreaseProgress(float newProgress)
+    {
+        if(slider.value-newProgress < 0)
+        {
+            targetProgress = 0f;
+        }
+        else targetProgress = slider.value - newProgress;
+        decrease = true;
     }
 }
